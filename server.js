@@ -1,38 +1,30 @@
 const express = require('express')
+const friendsController = require('./controllers/friends.controller')
+const messageControler = require('./controllers/massages.controller')
 
 const app = express();
 
 const PORT = 3000;
 
-const friends = [
-    {id: 0,
-    name: 'jhon'},
-    {
-        id: 1,
-    name: 'david'
-    }
-]
-
-
-app.get('/friends', (req,res) => {
-    res.json(friends)
+//middlewares
+app.use((req,res,next) => {
+    const start = Date.now()
+    next();
+    const delta = Date.now() - start;
+    console.log(`${req.method} ${req.url} ${delta}ms`);
 })
 
-app.get('/friends/:friendId', (req,res) => {
-    const friendId = Number(req.params.friendId);
-    const friend = friends[friendId];
-    if(friend){
-        res.json(friend)
-    } else {
-        res.status(404).json({
-            error:'friend does not exist, sorry'
-        })
-    }
-})
+app.use(express.json());
+//routes
+app.post('/friends', )
 
-app.post('/messages', (req,res) => {
-    console.log('Now post it')
-})
+app.get('/friends', )
+
+app.get('/friends/:friendId',)
+
+app.get('/messages',messageControler.getMessages )
+
+app.post('/messages', messageControler.postMessages )
 
 app.listen(PORT, () => {
     console.log(`listenig on port ${PORT}`);
