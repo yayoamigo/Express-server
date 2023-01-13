@@ -2,7 +2,10 @@ const path = require('path')
 
 function getMessages(req,res){
 
-    res.sendFile(path.join(__dirname, '..', 'public', 'yayo.jpg'))
+    res.render('messages', {
+        Title:'this is another page',
+        Actitude: 'lazy',
+    })
     
 }
 

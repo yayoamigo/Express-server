@@ -6,7 +6,7 @@ const messagesRouter = require('./routers/messages.router');
 
 const app = express();
 
-const PORT = 3000;
+const PORT = 3001;
 
 //middlewares
 app.use((req,res,next) => {
